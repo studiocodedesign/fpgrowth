@@ -282,8 +282,8 @@ module FpGrowth
               node = node.lateral
             end
           end
-          return @header_table
         end
+        return @header_table
       end
 
     end
