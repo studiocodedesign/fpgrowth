@@ -80,7 +80,7 @@ module FpGrowth
             # Build new Header Table
             header_table_new = FpTree::HeaderTable.build(row, header_table)
             # Mine extended pattern, new header table
-            top_down_fp_growth(header_table_new, pattern_beta)
+            top_down_fp_growth(header_table_new, pattern_beta, min_support)
           end
         end
 
