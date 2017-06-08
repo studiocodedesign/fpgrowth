@@ -47,7 +47,7 @@ module FpGrowth
         # Cet ordre est utilisé pour la construction du Tree lors de la seconde passe
         #
         def sort(supports=@supports)
-          Hash[(supports.sort_by { |_key, value| value }.reverse)]
+          Hash[(supports.sort_by { |key, value| [-value, key] })]
         end
 
         # Actually make the first pass
