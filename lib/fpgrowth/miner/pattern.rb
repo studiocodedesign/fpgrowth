@@ -42,6 +42,11 @@ module FpGrowth
         return Pattern.new(@content.clone, @support)
       end
 
+      def to_s
+        # a,b,c: 12
+        "#{@content.join(',')}: #{@support}"
+      end
+
     end
   end
 end

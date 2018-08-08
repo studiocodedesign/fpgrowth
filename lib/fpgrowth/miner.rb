@@ -62,12 +62,15 @@ module FpGrowth
         end
       end
 
-      def top_down_fp_growth(header_table, pattern_alpha=Pattern.new(), min_support=0)
+      def top_down_fp_growth(header_table, pattern_alpha=Pattern.new(), min_support=0, depth=0)
 
         if header_table.instance_of? FpTree::FpTree
           header_table = header_table.header_table
         end
 
+        puts "top_down_fp_growth, depth=#{depth}"
+        puts "header_table=#{header_table.to_s}"
+        puts "pattern_alpha=#{pattern_alpha.to_s}"
 
         # For each row of header_table
         for row in header_table.keys
@@ -80,7 +83,7 @@ module FpGrowth
             # Build new Header Table
             header_table_new = FpTree::HeaderTable.build(row, header_table)
             # Mine extended pattern, new header table
-            top_down_fp_growth(header_table_new, pattern_beta, min_support)
+            top_down_fp_growth(header_table_new, pattern_beta, min_support, depth + 1)
           end
         end
 

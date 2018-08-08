@@ -30,6 +30,11 @@ module FpGrowth
         @count[row[0]] += row[1]
       end
 
+      def to_s
+        # a: 1, b: 2, c: 5
+        @count.keys.map { |c| "#{c}: #{@count[c]}" }.join(', ')
+      end
+
     end
   end
 end
