@@ -1,6 +1,7 @@
 require_relative 'fp_tree'
 require_relative 'miner/pattern_base_extractor'
 require_relative 'miner/conditional_tree_builder'
+require 'set'
 
 module FpGrowth
   module Miner
@@ -27,7 +28,7 @@ module FpGrowth
       attr_reader :pattern_set
 
       def initialize
-        @pattern_set = []
+        @pattern_set = Set.new
       end
 
       def build_conditional_tree(tree=FpTree.new, item)
@@ -71,6 +72,7 @@ module FpGrowth
         puts "top_down_fp_growth, depth=#{depth}"
         puts "header_table=#{header_table.to_s}"
         puts "pattern_alpha=#{pattern_alpha.to_s}"
+        puts "pattern_set=#{@pattern_set}"
 
         # For each row of header_table
         for row in header_table.keys
