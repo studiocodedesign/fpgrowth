@@ -25,9 +25,16 @@ module FpGrowth
       #
       def << (row)
         # Add a link for m in HeaderTable
-        @nodes[row[0]] = @nodes[row[0]] << row[2]
+        @nodes[row[0]] = nodes[row[0]] << row[2]
         # Add support m = previous + n
         @count[row[0]] += row[1]
+      end
+
+      def add(item, support, node)
+        # Add a link for m in HeaderTable
+        @nodes[item].add(node)
+        # Add support m = previous + n
+        @count[item] += support
       end
 
       def to_s

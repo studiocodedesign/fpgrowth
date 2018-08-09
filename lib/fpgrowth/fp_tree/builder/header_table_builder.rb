@@ -18,7 +18,7 @@ module FpGrowth
 
           for node in @header_table.nodes[@item]
             # traverse tree from n to top
-            traverse_from_node_top_top(node.parent, node.support)
+            traverse_from_node_top_top(node.parent, @header_table.count[@item])
           end
           return @new_header_table
         end
@@ -27,6 +27,7 @@ module FpGrowth
           if node.item
             # For each node m
             @new_header_table << [node.item, support, node]
+            # @new_header_table.add(node.item, support, node)
             traverse_from_node_top_top(node.parent, support)
           end
         end

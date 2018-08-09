@@ -42,7 +42,7 @@ module FpGrowth
       def item_order_lookup
         unless @lookup
           @lookup = {}
-          @supports.keys.each_with_index do |item, index|
+          @supports.keys.sort.each_with_index do |item, index|
             @lookup[item] = index
           end
         end

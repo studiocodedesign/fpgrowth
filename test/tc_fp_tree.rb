@@ -18,6 +18,12 @@ class TestFpTree < Test::Unit::TestCase
     # Do nothing
   end
 
+  def test_graph
+    transactions = [['b', 'e'], ['a','b','c', 'e'], ['b', 'c', 'e'], ['a', 'c', 'd']]
+    tree = FpGrowth::FpTree.build(transactions)
+    tree.graphviz('graph')
+  end
+
   # test initialize
   def test_initialize
 

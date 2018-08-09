@@ -69,23 +69,26 @@ module FpGrowth
           header_table = header_table.header_table
         end
 
-        puts "top_down_fp_growth, depth=#{depth}"
-        puts "header_table=#{header_table.to_s}"
-        puts "pattern_alpha=#{pattern_alpha.to_s}"
-        puts "pattern_set=#{@pattern_set}"
+        puts ' ' * depth + "top_down_fp_growth, depth=#{depth}"
+        puts ' ' * depth + "header_table=#{header_table.to_s}"
+        puts ' ' * depth + "pattern_alpha=#{pattern_alpha.to_s}"
 
         # For each row of header_table
-        for row in header_table.keys
+        for row in header_table.keys.sort
           # If Support of header_table > min_support
           if header_table.count[row] > min_support then
             # output pattern extended with row.item
-            pattern_beta = Pattern.new(pattern_alpha.content + [row], header_table.count[row])
+            pattern_beta = Pattern.new([row] + pattern_alpha.content, header_table.count[row])
+            puts ' ' * depth + "pattern_beta=#{pattern_beta}"
             @pattern_set << pattern_beta
+            puts ' ' * depth + "pattern_set=#{@pattern_set}"
             # puts "Pattern extracted : #{pattern_beta.content.to_s} - #{pattern_beta.support}"
             # Build new Header Table
             header_table_new = FpTree::HeaderTable.build(row, header_table)
             # Mine extended pattern, new header table
-            top_down_fp_growth(header_table_new, pattern_beta, min_support, depth + 1)
+            # if header_table_new.keys.count > 0
+              top_down_fp_growth(header_table_new, pattern_beta, min_support, depth + 1)
+            # end
           end
         end
 
